@@ -1,3 +1,5 @@
+package com.company;
+
 public class Programacion_bucle_3 {
 
     public static void main(String[] args) {
