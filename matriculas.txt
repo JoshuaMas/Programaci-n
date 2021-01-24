@@ -1,0 +1,42 @@
+1234AAA
+1234BBB
+1234XXX
+1234CCC
+
+1234ABC
+1234ASC
+1234AEC
+1234ADC
+
+1234AAA
+1234BBB
+1234XXX
+1234CCC
+
+1234ABC
+1234ASC
+1234AEC
+1234ADC
+
+Matriculas de personas NO Discapacitadas: 1234AAA
+1234BBB
+1234XXX
+1234CCC
+
+Matriculas de personas Discapacitadas: 1234ABC
+1234ASC
+1234AEC
+1234ADC
+
+Matriculas de personas NO Discapacitadas: 
+1234AAA
+1234BBB
+1234XXX
+1234CCC
+
+Matriculas de personas Discapacitadas: 
+1234ABC
+1234ASC
+1234AEC
+1234ADC
+
