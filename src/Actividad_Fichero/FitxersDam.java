@@ -13,7 +13,7 @@ public class FitxersDam {
     }
     public void fitxer(String path, mode choice) throws IOException {
         if (choice == mode.escriptura) {
-            this.bw = new BufferedWriter(new FileWriter(path));
+            this.bw = new BufferedWriter(new FileWriter(path, true));
         } else if (choice.equals(mode.lectura)) {
             this.br = new BufferedReader(new FileReader(path));
         }
@@ -21,24 +21,24 @@ public class FitxersDam {
 
     public boolean escriure(String text)  {
         try {
-            if (text == null) {
-                throw new Exception("Escribe algo.");
-            }
-            else {
-                this.bw.write(text);
+                this.bw.write(text + "\n");
                 this.bw.close();
                 return true;
             }
-        } catch (Exception e) {
+
+        catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
     }
-    public String lectura() throws IOException {
+    public String lectura(int numlinies) throws IOException {
         String lineas;
-        while((lineas=br.readLine())!=null)
+        for (int i = 0; i < numlinies; i++) {
+            lineas = br.readLine();
             System.out.println(lineas);
+            this.br.close();
+        }
         this.br.close();
-        return "Lectura finalizada.";
+        return "Lectura finalizada";
     }
 }
