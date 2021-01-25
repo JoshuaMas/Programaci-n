@@ -6,7 +6,7 @@ public class test {
     public static void main(String[] args) throws IOException {
        FitxersDam test = new FitxersDam();
         test.fitxer("archivo.txt", FitxersDam.mode.escriptura);
-        System.out.println(test.escriure("Gustavo esta atontao"));
+        System.out.println(test.escriure("Hola mundo!"));
 
 /*
         FitxersDam test = new FitxersDam();

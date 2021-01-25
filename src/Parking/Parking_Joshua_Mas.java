@@ -2,7 +2,6 @@ package Parking;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
 
 
 public class Parking_Joshua_Mas {
@@ -10,7 +9,7 @@ public class Parking_Joshua_Mas {
 
     enum TipusPlacesParking {
         Discapacitat,
-        no_Discapacitat;
+        no_Discapacitat
     }
 
     // Atributos
@@ -27,7 +26,7 @@ public class Parking_Joshua_Mas {
     private int placesOcupadesDisc;
 
 
-    // Constructors
+    // Constructores
     public Parking_Joshua_Mas(int places_no_discapacitats, int places_discapacitats) {
         this.places_no_discapacitats = places_no_discapacitats;
         this.places_discapacitats = places_discapacitats;
@@ -38,6 +37,9 @@ public class Parking_Joshua_Mas {
     }
 
     // Metodos
+    /**Metodo el cual utilizamos para leer un listado de matriculas de un archivo, éste listado
+     * lo utilizamos para llenar las dos matrices en las que guardamos las matriculas de los coches
+     * Discapacitados y los coches No Discapacitados. */
 
     public void llegirMatricules(String path) throws Exception {
         try {
@@ -48,8 +50,14 @@ public class Parking_Joshua_Mas {
         String lineas = breader.readLine();
 
         while (lineas != null) {
+            /* Creamos 2 booleans para cuando se haya confirmado que lo
+             introducido es una matricula con formato correcto siga con la función del metodo.
+            */
             boolean bien1 = false;
             boolean bien2 = false;
+            /**Creamos varios if para crear un formato en el cual no nos pueden introducir algo que no sea una matricula
+             * con el formato 4 digitos y 3 letras, por ej. "1234AAA"
+             */
             if (lineas.length() == 7) {
                 for (int j = 0; j < 4; j++) {
                     if (Character.isDigit(lineas.charAt(j))) {
@@ -67,6 +75,7 @@ public class Parking_Joshua_Mas {
                     }
                 }
             }
+            //Con este randomer se van a meter aleatoriamente matriculas en las matrices.
             if (bien1 && bien2) {
                 int randomer = (int) ((Math.random() * 2) + 1);
                 if (randomer == 1) {
@@ -82,6 +91,9 @@ public class Parking_Joshua_Mas {
     public int entraCotxe(String matricula) throws Exception {
         boolean bien1 = false;
         boolean bien2 = false;
+        /**Creamos varios if para crear un formato en el cual no nos pueden introducir algo que no sea una matricula
+         * con el formato 4 digitos y 3 letras, por ej. "1234AAA"
+         */
         if (matricula.length() == 7) {
             for (int j = 0; j < 4; j++) {
                 if (Character.isDigit(matricula.charAt(j))) {
@@ -122,10 +134,10 @@ public class Parking_Joshua_Mas {
                         if (cotxes_que_han_partit.contains(matricula)) {
                             cotxes_que_han_partit.remove(matricula);
                         }
-                        int randomer = (int) ((Math.random()*9)+1);
+                        int randomer = (int) ((Math.random()*99)+1);
                         placesNoDisc[i] = matricula;
                         placesOcupadesNoDisc++;
-                        if (randomer<2) {
+                        if (randomer<10) {
                             entraCotxeDiscapacitat(matricula);
                         }
                         return 0;
@@ -258,7 +270,6 @@ public class Parking_Joshua_Mas {
             throw new Exception("ALERTA =====> Matrícula incorrecte");
         }
         if (bien1 && bien2) {
-
             if (cotxes_que_han_partit.contains(matricula)) {
                 throw new Exception("El cotxe no és al parking");
             } else {
@@ -366,6 +377,5 @@ public class Parking_Joshua_Mas {
         }
 
     }
-
 }
 
