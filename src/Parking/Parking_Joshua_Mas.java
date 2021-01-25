@@ -27,6 +27,7 @@ public class Parking_Joshua_Mas {
 
 
     // Constructores
+
     public Parking_Joshua_Mas(int places_no_discapacitats, int places_discapacitats) {
         this.places_no_discapacitats = places_no_discapacitats;
         this.places_discapacitats = places_discapacitats;
@@ -78,16 +79,22 @@ public class Parking_Joshua_Mas {
             //Con este randomer se van a meter aleatoriamente matriculas en las matrices.
             if (bien1 && bien2) {
                 int randomer = (int) ((Math.random() * 2) + 1);
+                try{
                 if (randomer == 1) {
                     entraCotxe(lineas);
                 } else if (randomer == 2) {
                     entraCotxeDiscapacitat(lineas);
+                }
+                }catch (Exception e) {
+                    System.out.println(e);
                 }
             }
             lineas = breader.readLine();
         }
         breader.close();
     }
+    /** Método en el que utilizamos 1 array para meter las matriculas de los coches, lo utilizamos tanto en el método llegirMatricules
+     * como para meter coches de 1 en 1 en el array. */
     public int entraCotxe(String matricula) throws Exception {
         boolean bien1 = false;
         boolean bien2 = false;
@@ -130,10 +137,11 @@ public class Parking_Joshua_Mas {
                                 throw new Exception("El cotxe ja està al parking. No pot entrar." + i);
                             }
                         }
-
+                        // Comprobamos si en el array en el que guardamos los coches que salen, esta dicho coche, para asi cuando lo queramos sacar, podamos.
                         if (cotxes_que_han_partit.contains(matricula)) {
                             cotxes_que_han_partit.remove(matricula);
                         }
+                        // Variable para que haya garrulos.
                         int randomer = (int) ((Math.random()*99)+1);
                         placesNoDisc[i] = matricula;
                         placesOcupadesNoDisc++;
@@ -150,9 +158,14 @@ public class Parking_Joshua_Mas {
         }
         return 1;
     }
+    /** Método en el que utilizamos 1 array para meter las matriculas de los coches discapacitados, lo utilizamos tanto en el método llegirMatricules
+     * como para meter coches de 1 en 1 en el array. */
     public int entraCotxeDiscapacitat(String matricula) throws Exception {
         boolean bien1 = false;
         boolean bien2 = false;
+        /**Creamos varios if para crear un formato en el cual no nos pueden introducir algo que no sea una matricula
+         * con el formato 4 digitos y 3 letras, por ej. "1234AAA"
+         */
         if (matricula.length() == 7) {
             for (int j = 0; j < 4; j++) {
                 if (Character.isDigit(matricula.charAt(j))) {
@@ -188,9 +201,11 @@ public class Parking_Joshua_Mas {
                         throw new Exception("ALERTA =====> Parking per discapacitats ple");
                     }
                 } else {
+                    // Comprobamos si en el array en el que guardamos los coches que salen, esta dicho coche, para asi cuando lo queramos sacar, podamos.
                     if (cotxes_que_han_partitDisc.contains(matricula)) {
                         cotxes_que_han_partitDisc.remove(matricula);
                     }
+                    // Bucle para determinar si hay garrulos.
                     for (int j = 0; j < placesNoDisc.length; j++) {
                         if (placesNoDisc[j].equals(matricula)) {
                             placesNoDisc[j] = "";
@@ -208,6 +223,7 @@ public class Parking_Joshua_Mas {
         }
         return 1;
     }
+    // Metodo que comprueba si el array esta lleno.
     private boolean lleno(TipusPlacesParking tipus) {
         boolean lleno = false;
         if (tipus.equals(TipusPlacesParking.Discapacitat)) {
@@ -233,6 +249,7 @@ public class Parking_Joshua_Mas {
         }
         return lleno;
     }
+    // Metodo para saber si las plazas están al 85% de su capacidad.
     private void porcentajeDeCapacidad(TipusPlacesParking tipus) throws Exception {
         if (tipus.equals(TipusPlacesParking.no_Discapacitat)) {
             int resultat = (int) (placesNoDisc.length * 0.85);
@@ -247,9 +264,13 @@ public class Parking_Joshua_Mas {
             }
         }
     }
+    // Metodo para sacar los coches, cada vez que sacamos un coche, lo quitamos del array.
     public void surtCotxe(String matricula) throws Exception {
         boolean bien1 = false;
         boolean bien2 = false;
+        /**Creamos varios if para crear un formato en el cual no nos pueden introducir algo que no sea una matricula
+         * con el formato 4 digitos y 3 letras, por ej. "1234AAA"
+         */
         if (matricula.length() == 7) {
             for (int j = 0; j < 4; j++) {
                 if (Character.isDigit(matricula.charAt(j))) {
@@ -288,6 +309,7 @@ public class Parking_Joshua_Mas {
             }
         }
     }
+    // Metodo para sacar los coches discapacitados. cada vez que sacamos un coche, lo quitamos del array de discapacitados.
     public void surtCotxeDiscapacitat(String matricula) throws Exception {
         boolean bien1 = false;
         boolean bien2 = false;
@@ -328,6 +350,7 @@ public class Parking_Joshua_Mas {
             }
         }
     }
+    // Metodo para saber si las plazas estan ocupadas.
     public int getPlacesOcupades(TipusPlacesParking tipus) {
         int volum = 0;
         if (tipus.equals(TipusPlacesParking.no_Discapacitat)) {
@@ -337,6 +360,7 @@ public class Parking_Joshua_Mas {
         }
         return volum;
     }
+    // Metodo para saber si hay plazas libres en el array.
     public int getPlacesLliures(TipusPlacesParking tipus) {
         int volum = 0;
         if (tipus.equals(TipusPlacesParking.Discapacitat)) {
@@ -348,6 +372,7 @@ public class Parking_Joshua_Mas {
         }
         return 0;
     }
+    // Guardamos las matriculas guardadas en los 2 arrays en un archivo, indicando la ruta.
     public void guardarMatricules(String path) throws IOException {
         bwriter = new BufferedWriter(new FileWriter(path, true));
         bwriter.write("Matriculas de personas Discapacitadas: \n");
@@ -365,12 +390,14 @@ public class Parking_Joshua_Mas {
         }
         bwriter.close();
     }
+    // Metodo para llenar el array de discapacitados con posiciones vacias, para poder controlar las plazas en las que los coches estan guardados.
     private void Places_inicialsDisc() {
         for (int i = 0; i < placesDisc.length; i++) {
             placesDisc[i] = "";
 
         }
     }
+    // Metodo para llenar el array coches no discapacitados con posiciones vacias, para poder controlar las plazas en las que los coches estan guardados.
     private void Places_inicials() {
         for (int i = 0; i < placesNoDisc.length; i++) {
             placesNoDisc[i] = "";

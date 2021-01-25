@@ -21,7 +21,7 @@ public class ParkingTest_Joshua_Mas {
                 System.out.println("6.- Guardar llistat de matricules en fitxer");
                 System.out.println("7.- Sortir");
                 System.out.print("-----------------------------------------------"+ "\n" + "Eligeix una de les opcions: " + "\n");
-                String seleccio = teclado.nextLine();
+                String seleccio = teclado.next();
                 try{
                 switch (seleccio) {
                     case "1" -> {
@@ -41,20 +41,20 @@ public class ParkingTest_Joshua_Mas {
                     }
                     case "3" -> {
                         System.out.println("Introduzca la matricula: ");
-                        String a = teclado.next();
-                        p.entraCotxeDiscapacitat(a);
-                        System.out.println("Coche con matricula: " + a + " estacionado.");
+                        String b = teclado.next();
+                        p.entraCotxeDiscapacitat(b);
+                        System.out.println("Coche con matricula: " + b + " estacionado.");
                     }
 
                     case "4" -> {
                         System.out.println("Introduzca la matricula: ");
-                        String a = teclado.next();
-                        p.surtCotxe(a);
+                        String c = teclado.next();
+                        p.surtCotxe(c);
                     }
                     case "5" -> {
                         System.out.println("Introduzca la matricula: ");
-                        String a = teclado.next();
-                        p.surtCotxeDiscapacitat(a);
+                        String d = teclado.next();
+                        p.surtCotxeDiscapacitat(d);
                     }
                     case "6" -> {
                         System.out.println("Indica la ruta del archivo al que quieres guardar las matriculas: ");
