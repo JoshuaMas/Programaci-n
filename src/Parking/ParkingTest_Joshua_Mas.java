@@ -2,7 +2,7 @@ package Parking;
 import java.util.Scanner;
 public class ParkingTest_Joshua_Mas {
     public static void main(String[] args){
-        Parking_Joshua_Mas p = new Parking_Joshua_Mas(30, 30);
+        Parkingv2_Joshua_Mas p = new Parkingv2_Joshua_Mas(30, 30);
         String u;
         String ruta;
         try{ruta=args[0];
@@ -54,7 +54,7 @@ public class ParkingTest_Joshua_Mas {
                     case "5" -> {
                         System.out.println("Introduzca la matricula: ");
                         String d = teclado.next();
-                        p.surtCotxeDiscapacitat(d);
+                        p.surtCotxeDiscapacitats(d);
                     }
                     case "6" -> {
                         System.out.println("Indica la ruta del archivo al que quieres guardar las matriculas: ");

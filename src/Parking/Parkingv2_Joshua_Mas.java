@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class Parking_Joshua_Mas {
+public class Parkingv2_Joshua_Mas {
 
 
     enum TipusPlacesParking {
@@ -16,8 +16,6 @@ public class Parking_Joshua_Mas {
 
     private BufferedReader breader;
     private BufferedWriter bwriter;
-    private int places_no_discapacitats;
-    private int places_discapacitats;
     String[] placesDisc;
     String[] placesNoDisc;
     ArrayList<String> cotxes_que_han_partitDisc = new ArrayList<>();
@@ -28,9 +26,7 @@ public class Parking_Joshua_Mas {
 
     // Constructores
 
-    public Parking_Joshua_Mas(int places_no_discapacitats, int places_discapacitats) {
-        this.places_no_discapacitats = places_no_discapacitats;
-        this.places_discapacitats = places_discapacitats;
+    public Parkingv2_Joshua_Mas(int places_no_discapacitats, int places_discapacitats) {
         this.placesDisc = new String[places_discapacitats];
         this.placesNoDisc = new String[places_no_discapacitats];
         Places_inicialsDisc();
@@ -46,7 +42,7 @@ public class Parking_Joshua_Mas {
         try {
             breader = new BufferedReader(new FileReader(path));
         } catch (Exception e) {
-            throw new Exception("ALERTA =====> Fitxer incorrecte o inexistent");
+            throw new Exception("ALERTA =====> Matrícula incorrecte.");
         }
         String lineas = breader.readLine();
 
@@ -64,7 +60,7 @@ public class Parking_Joshua_Mas {
                     if (Character.isDigit(lineas.charAt(j))) {
                         bien1 = true;
                     } else {
-                        throw new Exception("ALERTA =====> Matrícula incorrecte");
+                        throw new Exception("ALERTA =====> Matrícula incorrecte.");
                     }
                 }
 
@@ -72,7 +68,7 @@ public class Parking_Joshua_Mas {
                     if (Character.isLetter(lineas.charAt(4 + j)) == true) {
                         bien2 = true;
                     } else {
-                        throw new Exception("ALERTA =====> Matrícula incorrecte");
+                        throw new Exception("ALERTA =====> Matrícula incorrecte.");
                     }
                 }
             }
@@ -106,7 +102,7 @@ public class Parking_Joshua_Mas {
                 if (Character.isDigit(matricula.charAt(j))) {
                     bien1 = true;
                 } else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte");
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
             }
 
@@ -114,7 +110,7 @@ public class Parking_Joshua_Mas {
                 if (Character.isLetter(matricula.charAt(4 + j)) == true) {
                     bien2 = true;
                 } else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte");
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
             }
         }
@@ -154,7 +150,7 @@ public class Parking_Joshua_Mas {
             }
 
          else {
-            throw new Exception("ALERTA =====> Matrícula incorrecte");
+            throw new Exception("ALERTA =====> Matrícula incorrecte.");
         }
         return 1;
     }
@@ -171,7 +167,7 @@ public class Parking_Joshua_Mas {
                 if (Character.isDigit(matricula.charAt(j))) {
                     bien1 = true;
                 } else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte");
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
             }
 
@@ -179,11 +175,11 @@ public class Parking_Joshua_Mas {
                 if (Character.isLetter(matricula.charAt(4 + j)) == true) {
                     bien2 = true;
                 } else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte");
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
             }
         } else {
-            throw new Exception("ALERTA =====> Matrícula incorrecte");
+            throw new Exception("ALERTA =====> Matrícula incorrecte.");
         }
         if (bien1 && bien2) {
             try {
@@ -193,12 +189,12 @@ public class Parking_Joshua_Mas {
             }
             for (int i = 0; i < placesDisc.length; i++) {
                 if (placesDisc[i].equals(matricula)) {
-                    throw new Exception("El cotxe ja està al parking de discapacitats. No pot entrar.");
+                    throw new Exception("El cotxe ja està al parking. No pot entrar.");
                 } else if (placesDisc[i] != "") {
                     if (lleno(TipusPlacesParking.Discapacitat) && !(lleno(TipusPlacesParking.no_Discapacitat))) {
                         throw new Exception("ALERTA =====> Parking per discapacitats ple. Ha ocupat plaça normal num: " + entraCotxe(matricula));
                     } else if (lleno(TipusPlacesParking.Discapacitat)) {
-                        throw new Exception("ALERTA =====> Parking per discapacitats ple");
+                        throw new Exception("ALERTA =====> Parking per discapacitats ple.");
                     }
                 } else {
                     // Comprobamos si en el array en el que guardamos los coches que salen, esta dicho coche, para asi cuando lo queramos sacar, podamos.
@@ -254,13 +250,13 @@ public class Parking_Joshua_Mas {
         if (tipus.equals(TipusPlacesParking.no_Discapacitat)) {
             int resultat = (int) (placesNoDisc.length * 0.85);
             if (placesOcupadesNoDisc >= resultat) {
-                throw new Exception("ALERTA =====> Ocupació de places per no discapacitats supera el 85%");
+                throw new Exception("ALERTA =====> Ocupació de places per no discapacitats supera el 85%.");
             }
 
         } else if (tipus.equals(TipusPlacesParking.Discapacitat)) {
             int resultat = (int) (placesDisc.length * 0.85);
             if (placesOcupadesNoDisc >= resultat) {
-                throw new Exception("ALERTA =====> Ocupació de places per discapacitats supera el 85%");
+                throw new Exception("ALERTA =====> Ocupació de places per discapacitats supera el 85%.");
             }
         }
     }
@@ -276,23 +272,23 @@ public class Parking_Joshua_Mas {
                 if (Character.isDigit(matricula.charAt(j))) {
                     bien1 = true;
                 } else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte");
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
             }
 
             for (int j = 0; j < 3; j++) {
-                if (Character.isLetter(matricula.charAt(4 + j)) == true) {
+                if (Character.isLetter(matricula.charAt(4 + j))) {
                     bien2 = true;
                 } else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte");
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
             }
         } else {
-            throw new Exception("ALERTA =====> Matrícula incorrecte");
+            throw new Exception("ALERTA =====> Matrícula incorrecte.");
         }
         if (bien1 && bien2) {
             if (cotxes_que_han_partit.contains(matricula)) {
-                throw new Exception("El cotxe no és al parking");
+                throw new Exception("El cotxe no és al parking.");
             } else {
                 int j = 0;
                 for (int i = 0; i < placesNoDisc.length; i++) {
@@ -310,7 +306,7 @@ public class Parking_Joshua_Mas {
         }
     }
     // Metodo para sacar los coches discapacitados. cada vez que sacamos un coche, lo quitamos del array de discapacitados.
-    public void surtCotxeDiscapacitat(String matricula) throws Exception {
+    public void surtCotxeDiscapacitats(String matricula) throws Exception {
         boolean bien1 = false;
         boolean bien2 = false;
         if (matricula.length() == 7) {
@@ -318,23 +314,23 @@ public class Parking_Joshua_Mas {
                 if (Character.isDigit(matricula.charAt(j))) {
                     bien1 = true;
                 } else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte");
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
             }
 
             for (int j = 0; j < 3; j++) {
-                if (Character.isLetter(matricula.charAt(4 + j)) == true) {
+                if (Character.isLetter(matricula.charAt(4 + j))) {
                     bien2 = true;
                 } else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte");
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
             }
         } else {
-            throw new Exception("ALERTA =====> Matrícula incorrecte");
+            throw new Exception("ALERTA =====> Matrícula incorrecte.");
         }
         if (bien1 && bien2) {
             if (cotxes_que_han_partitDisc.contains(matricula)) {
-                throw new Exception("El cotxe no és al parking");
+                throw new Exception("El cotxe no és al parking.");
             } else {
                 int j = 0;
                 for (int i = 0; i < placesDisc.length; i++) {
@@ -346,6 +342,7 @@ public class Parking_Joshua_Mas {
                 if (cotxes_que_han_partitDisc.contains(matricula)) {
                     placesDisc[j] = "";
                     placesOcupadesDisc--;
+                    System.out.println("Ha salido el coche con matricula " + matricula);
                 }
             }
         }
@@ -365,12 +362,10 @@ public class Parking_Joshua_Mas {
         int volum = 0;
         if (tipus.equals(TipusPlacesParking.Discapacitat)) {
             volum = placesDisc.length - placesOcupadesDisc;
-            System.out.println("Places Lliures: " + volum);
         } else if (tipus.equals(TipusPlacesParking.no_Discapacitat)) {
             volum = placesNoDisc.length - placesOcupadesNoDisc;
-            System.out.println("Places Lliures: " + volum);
         }
-        return 0;
+        return volum;
     }
     // Guardamos las matriculas guardadas en los 2 arrays en un archivo, indicando la ruta.
     public void guardarMatricules(String path) throws IOException {
